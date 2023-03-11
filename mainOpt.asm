@@ -27,7 +27,7 @@ mov rax, 45
 int 80h
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; finding primes
+; find primes
 
     ; constant
     ; will be used to set bool values
@@ -44,7 +44,7 @@ loop1:
     ; clears rax
     xor rax, rax
 
-    ; if notPrimes[i] skip
+    ; if notPrimes[i] skips
     mov al, [r11 + rcx*8]
     cmp rax, 1
     je skip1
@@ -82,7 +82,7 @@ skip1:
 loop3:
     xor rax, rax
 
-    ; if notPrimes[i] skip
+    ; if notPrimes[i] skips
     mov al, [r11 + rcx*8]
     cmp rax, 1
     je skip2

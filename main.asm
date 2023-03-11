@@ -13,7 +13,7 @@ tmp: resq 1
 section .text
 _start:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; finding primes
+; find primes
 
     ; 0 and 1 aren't primes
     mov rax, 1
@@ -29,7 +29,7 @@ loop1:
     mov r10, rcx
     add r10, notPrimes
 
-    ; if notPrimes[i] skip
+    ; if notPrimes[i] skips
     mov al, [r10]
     cmp rax, 1
     je skip1
@@ -71,7 +71,7 @@ skip1:
 loop3:
     xor rax, rax
 
-    ; if notPrimes[i] skip
+    ; if notPrimes[i] skips
     mov al, [notPrimes + rcx]
     cmp rax, 1
     je skip2
