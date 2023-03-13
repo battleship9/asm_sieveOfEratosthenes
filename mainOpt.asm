@@ -41,12 +41,9 @@ int 80h
     mov rcx, 2
 
 loop1:
-    ; clears rax
-    xor rax, rax
-
     ; if notPrimes[i] skips
     mov al, [r11 + rcx*8]
-    cmp rax, 1
+    cmp al, 1
     je skip1
 
     ; j = i*i
@@ -80,11 +77,9 @@ skip1:
     mov rcx, n-1
 
 loop3:
-    xor rax, rax
-
     ; if notPrimes[i] skips
     mov al, [r11 + rcx*8]
-    cmp rax, 1
+    cmp al, 1
     je skip2
 
     mov [largestPrime], rcx
