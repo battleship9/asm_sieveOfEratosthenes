@@ -1,9 +1,9 @@
-bits 64
-global _start
+BITS 64
+GLOBAL _start
 
 section .data
-n: equ 100000000
-printFormat: equ 10000000
+n: equ 100
+printFormat: equ 10
 
 section .bss
 largestPrime: resq 1
@@ -17,12 +17,10 @@ mov rax, 45
 int 80h
 
 ; not primes list
-mov r11, rax
-add r11, 8
+lea r11, [rax + 8]
 
 ; increases aviable memory
-add rax, n*8
-mov rbx, rax
+lea rbx, [rax + n*8]
 mov rax, 45
 int 80h
 
@@ -92,62 +90,7 @@ skip2:
     cmp rcx, 0
     jge loop3
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; print the largest prime
-
-    mov rcx, printFormat
-
-    ; loads the largest prime
-    mov rax, [largestPrime]
-
-loop4:
-    xor rdx, rdx
-
-    ; divides by print format
-    div rcx
-    ; makes it humanly readable
-    add rax, '0'
-    ; copies to output
-    mov [tmp], rax
-
-    push rdx
-    push rcx
-
-    ; writes the output
-    mov rax, 4
-    mov rbx, 1
-    mov rcx, tmp
-    mov rdx, 8
-    int 80h
-
-    pop rcx
-
-    xor rdx, rdx
-
-    ; divides print format by 10
-    mov rax, rcx
-    mov rbx, 10
-    div rbx
-    mov rcx, rax
-
-    pop rdx
-
-    ; loads the remainder
-    mov rax, rdx
-
-    ; loops if print format is greater than 1
-    cmp rcx, 1
-    jg loop4
-
-    ; prints the ones place
-    add rax, '0'
-    mov [tmp], rax
-
-    mov rax, 4
-    mov rbx, 1
-    mov rcx, tmp
-    mov rdx, 8
-    int 80h
+%include "print.asm"
 
 end:
     mov rax, 1
